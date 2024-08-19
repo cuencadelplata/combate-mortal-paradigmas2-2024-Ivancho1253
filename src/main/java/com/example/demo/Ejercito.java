@@ -8,7 +8,7 @@ public class Ejercito {
   public Ejercito(){
   }
 
-  public Ejercito(int vida, Escudo escudo) {
+  public Ejercito(float vida, Escudo escudo) {
     this.vida = vida;
     this.escudo = escudo;
   }
@@ -17,30 +17,27 @@ public class Ejercito {
     return vida;
   }
 
-  public void setVida(int vida) {
+  public void setVida(float vida) {
     this.vida = vida;
   }
 
   public void recibirDisparo(){
 
-    if (escudo != null){
-       this.vida = escudo.reducirDaño();
-    }
+    float daño = 1.0f;
 
-    else{
-      this.vida--;
+    if (escudo != null){
+      daño = escudo.reducirDaño(daño);
     }
+      vida -= daño ;
   }
 
-  public int vidaRestante(){
+  public boolean estaVivo(){
     
-    if(vida > 0){
-
-      return 1;
+    if (vida > 0.000){
+      return true;
     }
-
     else{
-      return 0;
+      return false;
     }
   }
   

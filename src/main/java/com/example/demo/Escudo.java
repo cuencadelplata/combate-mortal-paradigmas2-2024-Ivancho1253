@@ -12,7 +12,7 @@ public class Escudo {
         this.porcentajeEscudo = porcentajeEscudo;
     }
 
-    public int reducirDaño(){
-        return (1 * (100 - porcentajeEscudo) / 100);
+    public float reducirDaño(float dañoOriginal){
+        return (dañoOriginal * (100 - porcentajeEscudo) / 100);
     }
 }
