@@ -2,16 +2,18 @@ package com.example.demo;
 
 public class Ejercito {
 
-  private int vida;
+  public float vida;
+  public Escudo escudo;
 
   public Ejercito(){
   }
 
-  public Ejercito(int vida) {
+  public Ejercito(int vida, Escudo escudo) {
     this.vida = vida;
+    this.escudo = escudo;
   }
 
-  public int getVida() {
+  public float getVida() {
     return vida;
   }
 
@@ -19,4 +21,27 @@ public class Ejercito {
     this.vida = vida;
   }
 
+  public void recibirDisparo(){
+
+    if (escudo != null){
+       this.vida = escudo.reducirDaño();
+    }
+
+    else{
+      this.vida--;
+    }
+  }
+
+  public int vidaRestante(){
+    
+    if(vida > 0){
+
+      return 1;
+    }
+
+    else{
+      return 0;
+    }
+  }
+  
 }
