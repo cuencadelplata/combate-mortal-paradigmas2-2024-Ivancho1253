@@ -35,7 +35,50 @@ class EjercitoTest {
     soldado.setVida(1);
     soldado.recibirDisparo();
     assert soldado.estaVivo() == false;
+  
   }
+
+  @Test
+  void soldado_dispara_a_otro_soldado(){
+
+    Soldado soldado1 = new Soldado();
+    Soldado soldado2 = new Soldado();
+
+    soldado1.disparar(soldado2);
+
+    assert soldado2.estaVivo() == false;
+
+  }
+
+  @Test
+  void soldado_dispara_a_otro_soldado_con_escudo_test(){
+
+    Soldado soldado1 = new Soldado();
+    Soldado soldado2 = new Soldado();
+    soldado1.setVida(1);
+    soldado2.setVida(1);
+
+    Escudo escudo = new Escudo();
+    escudo.setEscudo(50);
+    soldado2.escudo = escudo;
+
+    soldado1.disparar(soldado2);
+
+    assert soldado2.estaVivo() == true;
+  }
+
+  @Test
+  void soldado_dispara_a_tanque_test(){
+
+    Soldado soldado = new Soldado();
+    Tanque tanque = new Tanque();
+    tanque.setVida(2);
+
+    soldado.disparar(tanque);
+    assert tanque.getVida() == 1;
+    assert tanque.estaVivo() == true;
+  }
+
   @Test
   void soldado_con_escudo_no_muere_de_un_disparo_test(){
 

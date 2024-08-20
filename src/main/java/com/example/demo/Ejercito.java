@@ -20,7 +20,7 @@ public class Ejercito {
   public void setVida(float vida) {
     this.vida = vida;
   }
-
+  
   public void recibirDisparo(){
 
     float daño = 1.0f;
@@ -30,10 +30,16 @@ public class Ejercito {
     }
       vida -= daño ;
   }
+  
+  public void disparar(Ejercito objetivo){
+
+    objetivo.recibirDisparo();
+
+  }
 
   public boolean estaVivo(){
     
-    if (vida > 0.000){
+    if (vida > 0.000f){
       return true;
     }
     else{
