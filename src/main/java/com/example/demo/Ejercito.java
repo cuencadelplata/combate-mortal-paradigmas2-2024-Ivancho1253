@@ -23,28 +23,37 @@ public class Ejercito {
   
   public void recibirDisparo(){
 
-    float daño = 1.0f;
+    float danio = 1.0f;
 
     if (escudo != null){
-      daño = escudo.reducirDaño(daño);
+      
+      danio = escudo.reducirDanio(danio);
     }
-      vida -= daño ;
+      setVida(getVida() - danio) ;
   }
   
   public void disparar(Ejercito objetivo){
 
     objetivo.recibirDisparo();
+  }
 
+  public void recibirChuck(){
+
+    setVida(getVida() - 0);
+  }
+
+  public void dispararChuck(Ejercito objetivo){
+
+    objetivo.recibirChuck();
   }
 
   public boolean estaVivo(){
     
-    if (vida > 0.000f){
+    if (getVida() > 0.000f){
       return true;
     }
     else{
       return false;
     }
   }
-  
 }

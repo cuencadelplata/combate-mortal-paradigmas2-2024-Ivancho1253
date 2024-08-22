@@ -13,7 +13,6 @@ class EjercitoTest {
 
     Soldado soldado = new Soldado();
 
-    soldado.setVida(1);
     soldado.recibirDisparo();
     assert soldado.estaVivo() == false;
   }
@@ -22,9 +21,8 @@ class EjercitoTest {
   void soldado_vivo_pregunta_si_tiene_vida_test(){
 
     Soldado soldado = new Soldado();
-
-    soldado.setVida(1);
     assert soldado.estaVivo() == true;
+
   }
 
   @Test
@@ -32,7 +30,6 @@ class EjercitoTest {
 
     Soldado soldado = new Soldado();
 
-    soldado.setVida(1);
     soldado.recibirDisparo();
     assert soldado.estaVivo() == false;
   
@@ -55,13 +52,12 @@ class EjercitoTest {
 
     Soldado soldado1 = new Soldado();
     Soldado soldado2 = new Soldado();
-    soldado1.setVida(1);
-    soldado2.setVida(1);
+    
+    Escudo esc = new Escudo();
 
-    Escudo escudo = new Escudo();
-    escudo.setEscudo(50);
-    soldado2.escudo = escudo;
-
+    esc.setPorcentaje(50);
+    soldado2.escudo = esc;
+    
     soldado1.disparar(soldado2);
 
     assert soldado2.estaVivo() == true;
@@ -72,7 +68,6 @@ class EjercitoTest {
 
     Soldado soldado = new Soldado();
     Tanque tanque = new Tanque();
-    tanque.setVida(2);
 
     soldado.disparar(tanque);
     assert tanque.getVida() == 1;
@@ -83,14 +78,12 @@ class EjercitoTest {
   void soldado_con_escudo_no_muere_de_un_disparo_test(){
 
     Soldado soldado = new Soldado();
-    soldado.setVida(1);
+    Escudo esc1 = new Escudo();
 
-    Escudo escudo= new Escudo();
+    esc1.setPorcentaje(50);
+    soldado.setEscudo(esc1);
 
-    escudo.setEscudo(50);
-    assert escudo.getEscudo() == 50;
-    soldado.escudo = escudo;
-    
+    assert esc1.getPorcentaje() == 50;
     soldado.recibirDisparo();
     assert soldado.estaVivo() == true;
 
@@ -100,8 +93,6 @@ class EjercitoTest {
   void tanque_no_muere_con_un_disparo_test() {
 
     Tanque tanque = new Tanque();
-
-    tanque.setVida(2);
     tanque.recibirDisparo();
 
     assert tanque.estaVivo() == true;
@@ -111,7 +102,6 @@ class EjercitoTest {
   void tanque_muere_con_dos_disparos_test(){
     Tanque tanque = new Tanque();
 
-    tanque.setVida(2);
     tanque.recibirDisparo();
     tanque.recibirDisparo();
 
@@ -122,11 +112,10 @@ class EjercitoTest {
   void tanque_con_escudo_no_muere_con_dos_disparos_test(){
     Tanque tanque = new Tanque();
 
-    tanque.setVida(2);
-    Escudo escudo = new Escudo();
-    escudo.setEscudo(10);
+    Escudo esc1 = new Escudo();
+    esc1.setPorcentaje(10);
+    tanque.setEscudo(esc1);
 
-    tanque.escudo = escudo;
     tanque.recibirDisparo();
     tanque.recibirDisparo();
     assert tanque.estaVivo() == true;
@@ -137,7 +126,6 @@ class EjercitoTest {
 
     Buque buque = new Buque();
 
-    buque.setVida(3);
     buque.recibirDisparo();
 
     assert buque.estaVivo() == true;
@@ -147,7 +135,6 @@ class EjercitoTest {
   void buque_muere_con_tres_disparos_test(){
     Buque buque = new Buque();
 
-    buque.setVida(3);
     buque.recibirDisparo();
     buque.recibirDisparo();
     buque.recibirDisparo();
@@ -159,15 +146,41 @@ class EjercitoTest {
   void buque_con_escudo_no_muere_con_tres_disparos_test(){
 
     Buque buque = new Buque();
-    buque.setVida(3);
-    Escudo escudo = new Escudo();
-    escudo.setEscudo(50);
-    buque.escudo = escudo;
+    Escudo esc1 = new Escudo();
+
+    esc1.setPorcentaje(50);
+    buque.setEscudo(esc1);
 
     buque.recibirDisparo();
     buque.recibirDisparo();
     buque.recibirDisparo();
 
     assert buque.estaVivo() == true;
+  }
+
+  @Test
+  void soldado_dispara_a_chuckNorris_no_lo_mata_test(){
+
+    Soldado soldado = new Soldado();
+    ChuckNorris chuck = new ChuckNorris();
+
+    soldado.dispararChuck(chuck);
+
+    assert chuck.estaVivo() == true;
+  }
+
+  @Test
+  void tanque_dispara_varias_veces_a_chuckNorris_no_lo_mata_test(){
+
+    Tanque tanque = new Tanque();
+    ChuckNorris chuck = new ChuckNorris();
+
+    tanque.dispararChuck(chuck);
+    tanque.dispararChuck(chuck);
+    tanque.dispararChuck(chuck);
+    tanque.dispararChuck(chuck);
+
+    assert chuck.estaVivo() == true;
+    
   }
 }
