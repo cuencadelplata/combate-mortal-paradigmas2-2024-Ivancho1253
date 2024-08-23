@@ -1,21 +1,21 @@
-package com.example.demo;
+package com.example;
 
-public class Tanque 
+public class Soldado 
             extends Ejercito{
-
-    public Tanque(){
-        setVida(2);
+    
+    public Soldado(){
+        setVida(1);
     }
-
-    public Tanque(int vida, Escudo escudo) {
+    
+    public Soldado(int vida, Escudo escudo) {
         super(vida, escudo);
     }
 
     public void setEscudo(Escudo escudo){
         this.escudo = escudo;
     }
-    
+
     public Escudo getEscudo(){
         return escudo;
-    }
+    } 
 }
