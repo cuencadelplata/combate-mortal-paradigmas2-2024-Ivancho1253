@@ -4,7 +4,7 @@ public class Ejercito {
 
   public float vida;
   public Escudo escudo;
-
+  
   public Ejercito(){
   }
 

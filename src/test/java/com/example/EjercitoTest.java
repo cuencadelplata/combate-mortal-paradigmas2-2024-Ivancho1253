@@ -3,6 +3,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+
 @SpringBootTest
 @SpringBootConfiguration
 
@@ -183,4 +187,27 @@ class EjercitoTest {
     assert chuck.estaVivo() == true;
     
   }
+  
+ 
+  
+  
+  @Test
+  void anadir_10000_soldados_test() {
+      ArrayList <Soldado> soldados = new ArrayList<>();
+  
+      for (int i = 1; i <= 10000; i++) {
+          Soldado s = new Soldado();
+          s.setIdentificacion("Soldado" + i);
+          soldados.add(s);
+      }
+  
+      assert soldados.size() == 10000;
+  
+      long soldadosConId00 = soldados.stream()
+              .filter(soldado -> soldado.getIdentificacion().endsWith("00"))
+              .count();
+  
+      assertEquals(100, soldadosConId00);
+  }
+  
 }
